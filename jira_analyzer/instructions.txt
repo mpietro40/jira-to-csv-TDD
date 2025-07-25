@@ -1,0 +1,14 @@
+# Run all tests
+pytest
+
+# Run with verbose output
+pytest -v
+
+# Run with coverage report
+pytest --cov=jira_analyzer
+
+# Run specific test
+pytest test_jira_analyzer.py::TestJiraStatusAnalyzer::test_calculate_days_difference
+
+# Run tests that match a pattern
+pytest -k "test_parse"

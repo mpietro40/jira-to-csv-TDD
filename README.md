@@ -24,20 +24,21 @@ I'll do any change in the future the test will become red. Can you create a step
 <h2>Step-by-Step TDD Implementation Guide</h2>
 <h3>Step 1: Understanding TDD Principles</h3>
 TDD Cycle (Red-Green-Refactor):
+<br>
+Red: Write a failing test first<br>
+Green: Write minimal code to make the test pass<br>
+Refactor: Improve code while keeping tests green<br>
 
-Red: Write a failing test first
-Green: Write minimal code to make the test pass
-Refactor: Improve code while keeping tests green
 <h3>Step 2: Setup Testing Environment</h3>
-Install testing dependencies:
+Install testing dependencies:<br>
 <i>pip install pytest pytest-mock pytest-cov</i>
-Create project structure:
+Create project structure:<br>
 <i>
-jira_analyzer/
-├── jira_status_analyzer.py
-├── test_jira_analyzer.py
-├── requirements.txt
-└── conftest.py
+jira_analyzer/<br>
+├── jira_status_analyzer.py<br>
+├── test_jira_analyzer.py<br>
+├── requirements.txt<br>
+└── conftest.py<br>
 </i>
 <h2>Step 3: Refactor Original Script for Testability
 </h2>
@@ -100,3 +101,110 @@ bash:
 <h2>Step 10: Making Tests Fail (Proving They Work)</h2>
 Deliberately break your code to verify tests catch issues:
 
+<h1>New prompt after some issue founds</h1>
+I've some doubt:<br/>
+Step 2 you report jira_status_analyzer.py while in step 3 it's named jira_analyzer.py<br/>
+Step 6 you reported python but not the file where this changes should be<br/>
+Step 7 you mention "Create pytest.ini" which is a file not present in Step 2<br/>
+Step 7 you mention "Create requirements-test.txt" which is a file not present in Step 2 (or at least with a different name)<br/>
+Step 8 you reported python but not the file where this changes should be<br/>
+Step 10 you reported python but not the file where this changes should be<br/>
+Can you please review and correct the whole process? Please note I've already created the file mentioned so if they are unchanged please do not report all the file content in the new procedure but only a reference to the previous procedure
+<br/>
+Step 1: Understanding TDD Principles
+(No changes - as per previous procedure)
+
+Step 2: Setup Testing Environment
+Install testing dependencies: (No changes - as per previous procedure)<br>
+Create project structure:<br/>
+<i>
+jira_analyzer/<br/>
+├── jira_analyzer.py                    # ← CORRECTED: Main script (refactored version from Step 3)<br/>
+├── test_jira_analyzer.py               # ← Test file (from Step 4) <br/>
+├── requirements.txt                    # ← Dependencies for main app<br/>
+├── requirements-test.txt               # ← NEW: Testing dependencies (see Step 7)<br/>
+├── conftest.py                         # ← Test configuration (from Step 5)<br/>
+└── pytest.ini                         # ← NEW: Pytest configuration (see Step 7)<br>
+<br>
+</i>
+
+Step 3: Refactor Original Script for Testability
+File: jira_analyzer.py
+(Content as provided in previous Step 3 - no changes)
+
+Step 4: Write Your First Tests
+File: test_jira_analyzer.py
+(Content as provided in previous Step 4 - no changes)
+
+Step 5: Running Tests
+File: conftest.py
+(Content as provided in previous Step 5 - no changes)
+
+Step 6: TDD Workflow in Practice
+Example: Adding a new feature (TDD style)
+Scenario: Add validation for issue key format
+
+RED: Write failing test first in test_jira_analyzer.py:
+
+
+Run test - it will fail (RED)
+
+GREEN: Add minimal code to make it pass in jira_analyzer.py:
+
+Run test - it will fail (RED)
+
+GREEN: Add minimal code to make it pass in jira_analyzer.py:
+
+Create new file: requirements-test.txt
+
+pytest==7.4.0
+pytest-mock==3.11.1
+pytest-cov==4.1.0
+pytest-xdist==3.3.1
+
+Update existing file: requirements.txt
+
+jira==3.5.0
+Step 8: Testing Best Practices
+Test Categories - ADD to test_jira_analyzer.py:
+
+Run specific test types:
+# Run only unit tests
+pytest -m unit
+
+# Run only integration tests  
+pytest -m integration
+
+# Skip slow tests
+pytest -m "not slow"
+
+Step 9: Measuring Success
+(No changes - as per previous procedure)
+
+Step 10: Making Tests Fail (Proving They Work)
+Deliberately break your code in jira_analyzer.py to verify tests catch issues:
+
+Run tests - they should fail, proving they work!
+Remember to revert this change after testing!
+
+Summary of Files Created/Modified:
+New Files to Create:
+
+pytest.ini (Step 7)
+requirements-test.txt (Step 7)
+Files with Content from Previous Steps:
+
+jira_analyzer.py (Step 3 - refactored main script)
+test_jira_analyzer.py (Step 4 - test file)
+conftest.py (Step 5 - test configuration)
+Files to Modify:
+
+requirements.txt (Step 7 - add main dependencies)
+test_jira_analyzer.py (Step 6 & 8 - add new tests as needed)
+jira_analyzer.py (Step 6 & 10 - add new methods or temporary breaks for testing)
+Installation Commands:
+<i> # Install main dependencies
+pip install -r requirements.txt
+
+# Install testing dependencies  
+pip install -r requirements-test.txt</i>
